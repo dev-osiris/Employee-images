@@ -1,3 +1,4 @@
+# flask app to take input from the form on https://employee-prom-pred.herokuapp.com/
 from flask import Flask,request, render_template
 from flask_cors import CORS
 import employee_pred
@@ -9,6 +10,7 @@ CORS(app)
 def default():
   return render_template('index.html')
 
+# features of the model
 features = ['dept code', 'gender', 'trainings', 'age', 'ratings', 'service_len', 'kpi', 'awards', 'avg train scr']
 
 @app.route("/",methods=['POST'])
@@ -23,6 +25,7 @@ def return_prediction():
   awards = request.form.get("feature9", type=int)
   avg_train_scr = request.form.get("feature10", type=int)
 
+  # since dept code feature doesn't matter much, we can hardcode it any value from 1 - 3  
   sample = [3, degree, gender, trainings, age, ratings, service_len, kpi,
             awards, avg_train_scr]
 
@@ -34,19 +37,13 @@ def return_prediction():
     # creating a Metric of Sum
     sample.append(avg_train_scr * ratings)
 
-
-    for i in range(len(features)):
-      print(features[i] + ': ', sample[i])
-
+    # make prediction using predict() method of employee_pred.py
     ans = int(employee_pred.predict([sample]))
-    print(f'prediction type is {type(ans)}, pred: {ans}')
 
     if ans == 1:
       ans_str = "EMPLOYEE_PROMOTED"
-      print(ans_str)
     else:
       ans_str = "EMPLOYEE_NOT_PROMOTED"
-      print(ans_str)
 
     return render_template('index.html', entry=ans_str)
 
