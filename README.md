@@ -9,7 +9,7 @@ One of the problem our corporate world is facing is around identifying the right
 \
 &nbsp;
 
-**Description of all the columns of datast**
+**Description of all the columns of dataset**
 
 <img src="https://github.com/dev-osiris/Employee-promotion-prediction/blob/main/Assets/images/2-data_desc.PNG" width="500" height="350">
 
@@ -132,4 +132,6 @@ The app is deployed on  [Heroku](https://id.heroku.com/login) platform on https:
 
 &nbsp;
 
-The 
+screenshot:
+
+<img src="https://github.com/dev-osiris/Employee-promotion-prediction/blob/main/Assets/images/8-screenshot.PNG" widht="840" height="500">
