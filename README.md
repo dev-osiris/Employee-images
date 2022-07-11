@@ -114,3 +114,22 @@ Testing Accuracy : 0.956221198156682
 
 **DEPLOYEMENT**
 
+**Flask framework**
+
+Flask is a small and lightweight Python web framework that provides useful tools and features that make creating web applications in Python easier. It gives developers flexibility and is a more accessible framework for new developers since you can build a web application quickly using only a single Python file. Flask is also extensible and doesn’t force a particular directory structure or require complicated boilerplate code before getting started.
+
+<img src="https://github.com/dev-osiris/Employee-promotion-prediction/blob/main/Assets/images/7-data_flow.png">
+
+\
+&nbsp;
+\
+&nbsp;
+
+
+**Hosting on Heroku Platform**
+
+The app is deployed on  [Heroku](https://id.heroku.com/login) platform on https://employee-prom-pred.herokuapp.com/
+
+&nbsp;
+
+The 
