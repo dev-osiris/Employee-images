@@ -19,8 +19,8 @@ from sklearn.tree import DecisionTreeClassifier
 """
 
 
-test = pd.read_csv('test (1).csv')
-train = pd.read_csv('train (1).csv')
+test = pd.read_csv('dataset\\test (1).csv')
+train = pd.read_csv('dataset\\train (1).csv')
 
 
 # missing values in training data set
@@ -44,16 +44,7 @@ train_missing_data = pd.concat([train_total, train_percent, test_total, test_per
                                sort=True)
 
 
-train_missing_data.style.bar(color = ['gold'])
-
-"""
- We can see from the above table, that Only two columns have missing values in Train and Test
- Dataset both. Also, the Percentage of Missing values is around 4 and 7% in education, and previous_year_rating 
- respectively. So, do not have delete any missing values, we can simply impute the values using
- Mean, Median, and Mode Values.
-"""
-
-# lets impute the missing values in the Training Data
+# lets impute NA in the missing values in the Training Data
 
 train['education'] = train['education'].fillna(train['education'].mode()[0])
 train['previous_year_rating'] = train['previous_year_rating'].fillna(train['previous_year_rating'].mode()[0])
@@ -63,7 +54,6 @@ train['previous_year_rating'] = train['previous_year_rating'].fillna(train['prev
 
 test['education'] = test['education'].fillna(test['education'].mode()[0])
 test['previous_year_rating'] = test['previous_year_rating'].fillna(test['previous_year_rating'].mode()[0])
-
 
 
 # lets remove the outliers from the length of service column
@@ -96,20 +86,12 @@ test = test.drop(['recruitment_channel', 'region', 'employee_id'], axis=1)
 # lets check the columns in train and test data set after feature engineering
 # train.columns
 
-"""
-lets check the no. of employee who did not get an award, did not acheive 80+ KPI, 
-previous_year_rating as 1 and avg_training score is less than 40 but, still got promotion.
-"""
-
-print(train[(train['KPIs_met >80%'] == 0) & (train['previous_year_rating'] == 1.0) &
-      (train['awards_won?'] == 0) & (train['avg_training_score'] < 60) & (train['is_promoted'] == 1)])
 
 # lets remove the above two columns as they have a huge negative effect on our training data
 
 train = train.drop(train[(train['KPIs_met >80%'] == 0) & (train['previous_year_rating'] == 1.0) &
                          (train['awards_won?'] == 0) & (train['avg_training_score'] < 60) & (
                                      train['is_promoted'] == 1)].index)
-
 
 
 # Dealing with Categorical Columns
@@ -151,14 +133,12 @@ x_resample, y_resample = oversample.fit_resample(x, y.values.ravel())
 x_train, x_valid, y_train, y_valid = train_test_split(x_resample, y_resample, test_size=0.2, random_state=0)
 
 
-
 # Feature Scaling
 # scale all the features of the dataset into the same scale using standard scaling
 sc = StandardScaler()
 x_train = sc.fit_transform(x_train)
 x_valid = sc.transform(x_valid)
 x_test = sc.transform(x_test)
-
 
 
 # use Decision Trees to classify the data
@@ -169,5 +149,5 @@ y_pred = model.predict(x_valid)
 
 
 # Dump(save) classifier and scalar to disk using pickle library
-pickle.dump(model, open('model.pkl', 'wb'))
-pickle.dump(sc, open('scalar.pkl', 'wb'))
+pickle.dump(model, open('pickle\\model.pkl', 'wb'))
+pickle.dump(sc, open('pickle\\scalar.pkl', 'wb'))

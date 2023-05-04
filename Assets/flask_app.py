@@ -1,4 +1,3 @@
-# flask app to take input from the form on https://employee-prom-pred.herokuapp.com/
 from flask import Flask,request, render_template
 from flask_cors import CORS
 import employee_pred
@@ -10,8 +9,10 @@ CORS(app)
 def default():
   return render_template('index.html')
 
+
 # features of the model
 features = ['dept code', 'gender', 'trainings', 'age', 'ratings', 'service_len', 'kpi', 'awards', 'avg train scr']
+
 
 @app.route("/",methods=['POST'])
 def return_prediction():
@@ -28,7 +29,6 @@ def return_prediction():
   # since dept code feature doesn't matter much, we can hardcode it any value from 1 - 3  
   sample = [3, degree, gender, trainings, age, ratings, service_len, kpi,
             awards, avg_train_scr]
-
 
   try:
     # creating a total score column
@@ -49,6 +49,7 @@ def return_prediction():
 
   except TypeError:
     return render_template('index.html', entry="BAD_INPUT")
+
 
 if __name__ == "__main__":
     app.run()
