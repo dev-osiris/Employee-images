@@ -1,110 +1,128 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <title>Employee Promotion Prediction</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
-    <title>Heading</title>
-  </head>
-  <body style="background-color:powderblue;">
-    <br>
-    <div class="container main">
-  <div class="jumbotron" id="holder">
-    <h1 class='main_heading'> Employee Promotion Prediction</h1>
-    <h3>A Machine Learning model to predict the likelihood of promotion</h3>
-    <br>
-    <br>
-    <form class="form-horizontal" method="post">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    
+    <title>Employee Promotino Prediction</title>
+</head>
+<body>
+    <header class='speaker-form-header'>
+        <h1>Employee Promotion Prediction</h1>
+        <p><em>
+            Fill details of the employee to check whether they should be promoted
+            or not.
+            <br>
+            All fields are necessary. 
+        </em></p>
+    </header>
 
-      <div class="form-group">
-        <label class="control-label col-sm-2" >education:</label>
-        <div class="col-sm-10">
-          <input  class="form-control" name="feature2" placeholder=" Masters -> 3, Btech -> 2 and secondary ed -> 1" >
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" >gender:</label>
-        <div class="col-sm-10">
-          <input class="form-control" name="feature3" placeholder=" 0 -> female, 1 -> male" >
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" >num of trainings:</label>
-        <div class="col-sm-10">
-          <input class="form-control" name="feature4" placeholder=" values 0 - 5" >
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" >age:</label>
-        <div class="col-sm-10">
-          <input class="form-control" name="feature5" placeholder=" values 20 - 60" >
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" >prev year rating:</label>
-        <div class="col-sm-10">
-          <input class="form-control" name="feature6" placeholder=" values 1 - 5" >
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" >length of service:</label>
-        <div class="col-sm-10">
-          <input class="form-control" name="feature7" placeholder=" values 1 - 37 years" >
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" >KPIs met > 80% ?:</label>
-        <div class="col-sm-10">
-          <input class="form-control" name="feature8" placeholder=" 0 -> not met, 1 -> met" >
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" >Awards won:</label>
-        <div class="col-sm-10">
-          <input class="form-control" name="feature9" placeholder=" 0 -> no, 1 -> yes" >
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" >Avg training score:</label>
-        <div class="col-sm-10">
-          <input class="form-control" name="feature10" placeholder=" values 40 - 99" >
-        </div>
-      </div>
+    <form method='post' class='speaker-form'>
+        
+        <fieldset class='legacy-form-row'>
+            <legend>Education</legend>
+            <input id='high_school'
+            name='education_level'
+            type='radio'
+            value='1' 
+            checked />
+            <label for='high_school' class='radio-label'>Secondary edu</label>
+            <input id='btech'
+            name='education_level'
+            type='radio'
+            value='2' />
+            <label for='btech' class='radio-label'>Btech</label>
+            <input id='masters'
+            name='education_level'
+            type='radio'
+            value='3' />
+            <label for='masters' class='radio-label'>Masters</label>
+        </fieldset>
+        
+        <fieldset class='legacy-form-row'>
+            <legend>Gender</legend>
+            <input id='male'
+            name='gender'
+            type='radio'
+            value='0' 
+            checked />
+            <label for='male' class='radio-label'>Male</label>
+            <input id='female'
+            name='gender'
+            type='radio'
+            value='1' />
+            <label for='female' class='radio-label'>Female</label>
+        </fieldset>
 
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="button btn btn-default">Submit</button>
+        <div class='form-row'>
+            <label for='trainings'>Num of trainings</label>
+            <input id='trainings' name='training' type='number' placeholder="values 0 - 5" max="5" min="0" />
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="control-label col-sm-2" >Result:</label>
-        <div class="col-sm-10">
-          <input class="form-control" name="result"  placeholder={{entry}} >
+        <div class='form-row'>
+            <label for='age'>Age</label>
+            <input id='age' name='age' type='number' placeholder="values 20 - 60" min="20" max="60" />
         </div>
-      </div>
+
+        <div class='form-row'>
+            <label for='prev_yr_ratings'>Prev year ratings</label>
+            <input id='prev_yr_ratings' name='prev_yr_ratings' type='number'
+                   placeholder="values 1 - 5" min="1" max="5" />
+        </div>
+
+        <div class='form-row'>
+            <label for='service_len'>Length of service</label>
+            <input id='service_len' name='service_len' type='number'
+                   placeholder="values 1 - 37" min="1" max="37" />
+        </div>
+
+        <fieldset class='legacy-form-row'>
+            <legend>KPIs met > 80% ?</legend>
+            <input id='yes'
+            name='kpi'
+            type='radio'
+            value='1' 
+            checked />
+            <label for='yes' class='radio-label'>Yes</label>
+            <input id='no'
+            name='kpi'
+            type='radio'
+            value='0' />
+            <label for='no' class='radio-label'>No</label>
+        </fieldset>
+
+        <fieldset class='legacy-form-row'>
+            <legend>Awards won?</legend>
+            <input id='yes'
+            name='awards'
+            type='radio'
+            value='1' 
+            checked />
+            <label for='yes' class='radio-label'>Yes</label>
+            <input id='no'
+            name='awards'
+            type='radio'
+            value='0' />
+            <label for='no' class='radio-label'>No</label>
+        </fieldset>
+
+        <div class='form-row'>
+            <label for='train_score'>Avg train score</label>
+            <input id='train_score' name='train_score' type='number'
+                   placeholder="values 40 - 99" min="40" max="99" />
+        </div>
+
+        <div class='form-row'>
+            <button type="submit">Submit</button>
+        </div>
+
+        <div class='form-row'>
+            <label for='result'>Result</label>
+            <input id='result' name='result' type='text' placeholder="{{entry}}" />
+        </div>
 
     </form>
-  </div>
-</div>
-
-
-<!-- Footer -->
-<footer class="page-footer font-small blue">
-
-  <div class="py-3">
-    <p><a href="https://github.com/dev-osiris/Employee-promotion-prediction">Github</a></p>
-
-    <p><a href="https://www.linkedin.com/mwlite/in/livesh-kumar-226474155">
-            Livesh kumar | Employee Promotion Predictor</a></p>
-
-  </div>
-
-</footer>
-<!-- Footer -->
-
-
-  </body>
+</body>
 </html>

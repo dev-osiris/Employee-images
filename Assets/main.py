@@ -19,8 +19,8 @@ from sklearn.tree import DecisionTreeClassifier
 """
 
 
-test = pd.read_csv('dataset\\test (1).csv')
-train = pd.read_csv('dataset\\train (1).csv')
+test = pd.read_csv("Assets\\dataset\\test (1).csv")
+train = pd.read_csv('Assets\\dataset\\train (1).csv')
 
 
 # missing values in training data set
@@ -147,7 +147,9 @@ model.fit(x_train, y_train)
 
 y_pred = model.predict(x_valid)
 
+# accuracy
+# print("Accuracy: ", model.score(x_valid, y_valid))
 
 # Dump(save) classifier and scalar to disk using pickle library
-pickle.dump(model, open('pickle\\model.pkl', 'wb'))
-pickle.dump(sc, open('pickle\\scalar.pkl', 'wb'))
+pickle.dump(model, open('Assets\\pickle\\model.pkl', 'wb'))
+pickle.dump(sc, open('Assets\\pickle\\scalar.pkl', 'wb'))

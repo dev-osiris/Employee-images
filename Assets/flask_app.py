@@ -16,15 +16,17 @@ features = ['dept code', 'gender', 'trainings', 'age', 'ratings', 'service_len',
 
 @app.route("/",methods=['POST'])
 def return_prediction():
-  degree = request.form.get("feature2", type=int)
-  gender = request.form.get("feature3", type=int)
-  trainings = request.form.get("feature4", type=int)
-  age = request.form.get("feature5", type=int)
-  ratings = request.form.get("feature6", type=int)
-  service_len = request.form.get("feature7", type=int)
-  kpi = request.form.get("feature8", type=int)
-  awards = request.form.get("feature9", type=int)
-  avg_train_scr = request.form.get("feature10", type=int)
+  degree = request.form.get("education_level", type=int)
+  gender = request.form.get("gender", type=int)
+  trainings = request.form.get("training", type=int)
+  age = request.form.get("age", type=int)
+  ratings = request.form.get("prev_yr_ratings", type=int)
+  service_len = request.form.get("service_len", type=int)
+  kpi = request.form.get("kpi", type=int)
+  awards = request.form.get("awards", type=int)
+  avg_train_scr = request.form.get("train_score", type=int)
+
+  print(degree, gender, trainings, age, ratings, service_len, kpi, awards, avg_train_scr)
 
   # since dept code feature doesn't matter much, we can hardcode it any value from 1 - 3  
   sample = [3, degree, gender, trainings, age, ratings, service_len, kpi,
@@ -48,6 +50,7 @@ def return_prediction():
     return render_template('index.html', entry=ans_str)
 
   except TypeError:
+    print("result: bad_input")
     return render_template('index.html', entry="BAD_INPUT")
 
 
